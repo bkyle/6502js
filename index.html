@@ -44,6 +44,15 @@
 
       <div class="notes" style="display: none">Notes:
 
+Memory location $fa contains the absolute X position of the mouse cursor within the display.
+Memory location $fb contains the absolute Y position of the mouse cursor within the display.
+Memory location $fc contains the mouse button states.  The button states can be determined with the
+following masks:
+
+$0: Nothing pressed
+$1: Left button pressed
+$2: Right button pressed
+
 Memory location $fe contains a new random byte on every instruction.
 Memory location $ff contains the ascii code of the last key pressed.
 

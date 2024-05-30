@@ -53,6 +53,9 @@ function SimulatorWidget(node) {
     $node.find('.code').keypress(simulator.stop);
     $node.find('.code').keypress(ui.initialize);
     $(document).keypress(memory.storeKeypress);
+    $node.find('.screen').on("mousemove", memory.storeMouse);
+    $node.find('.screen').on("mousedown", memory.storeMouse);
+    $node.find('.screen').on("mouseup", memory.storeMouse);
   }
 
   function stripText() {
@@ -239,6 +242,12 @@ function SimulatorWidget(node) {
       memory.storeByte(0xff, value);
     }
 
+    function storeMouse(e) {
+      memory.storeByte(0xfa, Math.floor(e.offsetX / 5));
+      memory.storeByte(0xfb, Math.floor(e.offsetY / 5));
+      memory.storeByte(0xfc, e.buttons)
+    }
+
     function format(start, length) {
       var html = '';
       var n;
@@ -263,6 +272,7 @@ function SimulatorWidget(node) {
       getWord: getWord,
       storeByte: storeByte,
       storeKeypress: storeKeypress,
+      storeMouse: storeMouse,
       format: format
     };
   }
